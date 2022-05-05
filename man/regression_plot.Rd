@@ -2,21 +2,15 @@
 % Please edit documentation in R/regression_plot.R
 \name{regression_plot}
 \alias{regression_plot}
-\title{Title}
+\title{Create a scatterplot with the added regression function}
 \usage{
 regression_plot(
   mod,
-  xvar,
-  yvar,
-  zvar,
   data,
-  colors = c("#716ca8", "#6ca6a8"),
+  colors = c("#ff6c59", "#ffd859"),
   showscale = FALSE,
   showlegend = FALSE,
-  xlab = "x",
-  ylab = "y",
-  zlab = "z",
-  n = 100
+  n = 50
 )
 }
 \arguments{
@@ -26,5 +20,5 @@ regression_plot(
 
 }
 \description{
-Title
+Create a scatterplot with the added regression function
 }

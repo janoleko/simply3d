@@ -6,9 +6,9 @@
 \usage{
 surface(
   expr,
-  xlim = c(0, 20),
-  ylim = c(0, 20),
-  colors = c("#716ca8", "#6ca6a8"),
+  xlim = c(0, 40),
+  ylim = c(0, 40),
+  colors = c("#ff6c59", "#ffd859"),
   showscale = FALSE,
   showlegend = FALSE,
   xlab = "x",
@@ -18,10 +18,28 @@ surface(
 )
 }
 \arguments{
-\item{zlab}{}
+\item{expr}{an expression or a function containing x and y as variables}
+
+\item{xlim}{A vector of limits for the x-axis}
+
+\item{ylim}{A vector of limits for the y-axis}
+
+\item{colors}{A vector of two colors (can also be the same)}
+
+\item{showscale}{Option for showing the colorscale}
+
+\item{showlegend}{Option for showing the legend}
+
+\item{xlab}{x-axis label}
+
+\item{ylab}{y-axis label}
+
+\item{zlab}{y-axis label}
+
+\item{n}{number of points where function is evalutated (actually n^2)}
 }
 \value{
-
+Returns a interactive 3D surface plot
 }
 \description{
 Create a surface plot for any function
