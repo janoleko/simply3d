@@ -1,5 +1,6 @@
 # simply3d
-R Package for convenient creation of 3D Plots relying on the plotly package.
+
+simply3d is an R Package for convenient creation of 3D Plots based on the functionality of the plotly package.
 This includes easy 3D surface plots, 3D scatter plots and 3D regression plots.
 
 This package is motivated by the fact that plotly enables the creation of really awesome 3D Plots that can be dynamically viewed from all angles. Sadly however the plotly syntax is very complicated which makes it annoying to create these plots.
