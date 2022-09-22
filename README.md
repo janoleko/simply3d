@@ -6,7 +6,7 @@ This package is motivated by the fact that plotly enables the creation of really
 
 So have fun with it :)
 
-To install use:
+For installation use:
 
 ```
 library(devtools)
