@@ -10,6 +10,5 @@ To install use:
 
 ```
 library(devtools)
-
 install_github("janoleko/simply3d")
 ```
