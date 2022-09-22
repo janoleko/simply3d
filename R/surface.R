@@ -1,6 +1,6 @@
-#' Create a surface plot for any function
+#' Create a 3D surface plot for any function
 #'
-#' @param expr an expression or a function containing x and y as variables
+#' @param expr An expression or a function containing x and y as variables
 #' @param xlim A vector of limits for the x-axis
 #' @param ylim A vector of limits for the y-axis
 #' @param colors A vector of two colors (can also be the same)
