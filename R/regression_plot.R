@@ -1,17 +1,11 @@
-#' Create a scatterplot with the added regression function
+#' Create a 3D scatterplot with the added regression function
 #'
-#' @param mod
-#' @param xvar
-#' @param yvar
-#' @param zvar
-#' @param data
-#' @param colors
-#' @param showscale
-#' @param showlegend
-#' @param xlab
-#' @param ylab
-#' @param zlab
-#' @param n
+#' @param mod An output object from lm() or glm() (model should have been fitted using argument 'data' and original variable names).
+#' @param data The data to which the regression model was fitted to (please use lm(response ~ covariate, data = ...) for the model fit).
+#' @param colors Either a single color or a vector containing two colors for a color gradient.
+#' @param showscale Show the scale or not
+#' @param showlegend Show the legend or not
+#' @param n Parameter for resolution of the scatter plot. n^2 points will be predicted in order to create the surface.
 #'
 #' @return
 #' @export

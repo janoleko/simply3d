@@ -1,13 +1,18 @@
-#' Title
+#' Dynamic 3D Scatterplot
 #'
-#' @param x
-#' @param y
-#' @param z
-#' @param col
+#' @param x x-variable
+#' @param y y-variable
+#' @param z z-variable
+#' @param size Pointsize
+#' @param color Pointcolor
+#' @param colorvar A variable for coloring points according to this variable
 #' @param colors
-#' @param xlab
-#' @param ylab
-#' @param zlab
+#' @param opacity Opacity of the points
+#' @param xlab Label of the x-axis
+#' @param ylab Label of the y-axis
+#' @param zlab Label of the z-axis
+#' @param showscale Show scale or not
+#' @param showlegend Show legend or not
 #'
 #' @return
 #' @export
