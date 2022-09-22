@@ -5,7 +5,7 @@
 #' @param ylim A vector of limits for the y-axis
 #' @param colors A vector of two colors (can also be the same)
 #' @param showscale Option for showing the colorscale
-#' @param showlegend Option for showing the legend
+#' @param showlegend Option for showing the legen
 #' @param xlab x-axis label
 #' @param ylab y-axis label
 #' @param zlab y-axis label
