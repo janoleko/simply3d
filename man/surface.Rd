@@ -2,7 +2,7 @@
 % Please edit documentation in R/surface.R
 \name{surface}
 \alias{surface}
-\title{Create a surface plot for any function}
+\title{Create a 3D surface plot for any function}
 \usage{
 surface(
   expr,
@@ -18,7 +18,7 @@ surface(
 )
 }
 \arguments{
-\item{expr}{an expression or a function containing x and y as variables}
+\item{expr}{An expression or a function containing x and y as variables}
 
 \item{xlim}{A vector of limits for the x-axis}
 
@@ -42,5 +42,5 @@ surface(
 Returns a interactive 3D surface plot
 }
 \description{
-Create a surface plot for any function
+Create a 3D surface plot for any function
 }

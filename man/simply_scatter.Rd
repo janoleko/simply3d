@@ -2,25 +2,49 @@
 % Please edit documentation in R/simply_scatter.R
 \name{simply_scatter}
 \alias{simply_scatter}
-\title{Title}
+\title{Dynamic 3D Scatterplot}
 \usage{
 simply_scatter(
   x,
   y,
   z,
-  col = rep(1, length(x)),
-  colors = c("#000000", "red"),
+  size = 5,
+  color = "#000000",
+  colorvar = NULL,
+  colors = c("red", "blue"),
+  opacity = 0.9,
   xlab = "x",
   ylab = "y",
-  zlab = "z"
+  zlab = "z",
+  showscale = FALSE,
+  showlegend = FALSE
 )
 }
 \arguments{
-\item{zlab}{}
-}
-\value{
+\item{x}{x-variable}
 
+\item{y}{y-variable}
+
+\item{z}{z-variable}
+
+\item{size}{Pointsize}
+
+\item{color}{Pointcolor}
+
+\item{colorvar}{A variable for coloring points according to this variable}
+
+\item{opacity}{Opacity of the points}
+
+\item{xlab}{Label of the x-axis}
+
+\item{ylab}{Label of the y-axis}
+
+\item{zlab}{Label of the z-axis}
+
+\item{showscale}{Show scale or not}
+
+\item{showlegend}{Show legend or not}
 }
 \description{
-Title
+Dynamic 3D Scatterplot
 }

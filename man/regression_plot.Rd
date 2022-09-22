@@ -2,7 +2,7 @@
 % Please edit documentation in R/regression_plot.R
 \name{regression_plot}
 \alias{regression_plot}
-\title{Create a scatterplot with the added regression function}
+\title{Create a 3D scatterplot with the added regression function}
 \usage{
 regression_plot(
   mod,
@@ -14,11 +14,18 @@ regression_plot(
 )
 }
 \arguments{
-\item{n}{}
-}
-\value{
+\item{mod}{An output object from lm() or glm() (model should have been fitted using argument 'data' and original variable names).}
 
+\item{data}{The data to which the regression model was fitted to (please use lm(response ~ covariate, data = ...) for the model fit).}
+
+\item{colors}{Either a single color or a vector containing two colors for a color gradient.}
+
+\item{showscale}{Show the scale or not}
+
+\item{showlegend}{Show the legend or not}
+
+\item{n}{Parameter for resolution of the scatter plot. n^2 points will be predicted in order to create the surface.}
 }
 \description{
-Create a scatterplot with the added regression function
+Create a 3D scatterplot with the added regression function
 }
