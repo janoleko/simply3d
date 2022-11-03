@@ -23,8 +23,23 @@ surface = function(expr, xlim = c(0,40), ylim = c(0,40),
 
   sexpr = substitute(expr)
 
-  if (is.name(sexpr)) {
-    f = expr
+  x.seq = seq(xlim[1], xlim[2], length.out = n)
+  y.seq = seq(ylim[1], ylim[2], length.out = n)
+
+  if (is.name(sexpr)){ # checking if expression is a function
+    error = tryCatch(expr(x.seq[1:2], y.seq[1:2]), error = function(e) e) # checking if function is vectorizable
+    if(methods::is(error, "error")){
+      f_scalar = expr
+      f = function(x,y){ # making f vectorizable
+        K = length(x)
+        ret = numeric(K)
+        for (k in 1:K){
+          ret[k] = f_scalar(x[k], y[k])
+        }
+        return(ret)
+      }
+    }
+    else f = expr
   }
   else{
     f = function(x,y){
@@ -32,8 +47,6 @@ surface = function(expr, xlim = c(0,40), ylim = c(0,40),
     }
   }
 
-  x.seq = seq(xlim[1], xlim[2], length.out = n)
-  y.seq = seq(ylim[1], ylim[2], length.out = n)
   z = t(outer(x.seq, y.seq, function(x,y) f(x,y)))
 
   surf = plotly::plot_ly(x = x.seq, y = y.seq, z = z, type = "surface", colors = colors,
