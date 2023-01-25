@@ -67,7 +67,7 @@
 #'
 #' surface(fig = scatter, expr = f, x = x, y = y)
 #'
-#' # or even shorte
+#' # or even shorter
 #' surface(fig = scatter, expr = predict(mod, newdata = data.frame(x,y)), x = x, y = y)
 
 surface = function(fig = NULL, expr, x = NULL, y = NULL, xlim = c(0,40), ylim = c(0,40),

@@ -103,6 +103,6 @@ predict(mod, newdata = data.frame(x,y))
 
 surface(fig = scatter, expr = f, x = x, y = y)
 
-# or even shorte
+# or even shorter
 surface(fig = scatter, expr = predict(mod, newdata = data.frame(x,y)), x = x, y = y)
 }
