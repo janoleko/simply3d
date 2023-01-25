@@ -1,6 +1,6 @@
 Package: simply3d
 Title: Convenient package for fast creation of dynamic 3D Plots
-Version: 1.0
+Version: 0.2.0
 Authors@R: 
     person("Jan-Ole", "Koslik", , "jan-ole.koslik@uni-bielefeld.de", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
