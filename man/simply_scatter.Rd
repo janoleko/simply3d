@@ -10,8 +10,6 @@ simply_scatter(
   z,
   size = 5,
   color = "#000000",
-  colorvar = NULL,
-  colors = c("red", "blue"),
   opacity = 0.9,
   xlab = "x",
   ylab = "y",
@@ -29,22 +27,59 @@ simply_scatter(
 
 \item{size}{Pointsize}
 
-\item{color}{Pointcolor}
-
-\item{colorvar}{A variable for coloring points according to this variable}
+\item{color}{Pointcolor (either a single color or a vector the same length of the data)}
 
 \item{opacity}{Opacity of the points}
 
-\item{xlab}{Label of the x-axis}
+\item{xlab}{x-axis label}
 
-\item{ylab}{Label of the y-axis}
+\item{ylab}{y-axis label}
 
-\item{zlab}{Label of the z-axis}
+\item{zlab}{z-axis label}
 
-\item{showscale}{Show scale or not}
+\item{showscale}{Option for showing or hiding the colorscale}
 
-\item{showlegend}{Show legend or not}
+\item{showlegend}{Option for showing or hiding the legend}
+}
+\value{
+Returns a interactive 3D scatter plot
 }
 \description{
 Dynamic 3D Scatterplot
+}
+\examples{
+
+## Example 1: Simple scatterplot
+
+simply_scatter(mtcars$hp, mtcars$cyl, mtcars$mpg, xlab = "hp", ylab = "cyl", zlab = "mpg")
+
+
+## Example 2: Adding a surface to a regression plot (e.g. to plot a linear regression)
+
+# generating data
+x = rnorm(1000, 10, 20)
+y = rnorm(1000, 20, 20)
+z = 4 + 0.3*x + 0.2*y + rnorm(1000, 0, 4)
+
+# plotting scatterplot with simply_scatter
+scatter = simply_scatter(x,y,z)
+
+# fitting a linear regression model
+mod = lm(z ~ x + y)
+
+# adding model plane into scatterplot
+surface(fig = scatter, expr = coef(mod)[1] + coef(mod)[2]*x + coef(mod)[3]*y, x = x, y = y)
+
+# you can also use the pipe operator
+require(dplyr)
+simply_scatter(x,y,z) \%>\%
+  surface(expr = coef(mod)[1] + coef(mod)[2]*x + coef(mod)[3]*y, x = x, y = y)
+
+# for more complex models defining an expression as above might be tedious.
+# You can also just define your model prediction as a function
+f = function(x,y){
+predict(mod, newdata = data.frame(x,y))
+}
+
+surface(fig = scatter, expr = f, x = x, y = y)
 }

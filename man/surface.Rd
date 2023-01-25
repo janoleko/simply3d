@@ -5,42 +5,101 @@
 \title{Create a 3D surface plot for any function}
 \usage{
 surface(
+  fig = NULL,
   expr,
+  x = NULL,
+  y = NULL,
   xlim = c(0, 40),
   ylim = c(0, 40),
   colors = c("#ff6c59", "#ffd859"),
-  showscale = FALSE,
+  showscale = TRUE,
   showlegend = FALSE,
   xlab = "x",
   ylab = "y",
   zlab = "z",
-  n = 100
+  n = 50
 )
 }
 \arguments{
-\item{expr}{An expression or a function containing x and y as variables}
+\item{fig}{Optional: A scatterplot onto which to plot the surface. If provided please also provide the x and y-variables used for the scatterplot. If not provided please specify the xlim and ylim arguments for the plot.}
 
-\item{xlim}{A vector of limits for the x-axis}
+\item{expr}{An expression or a function containing x and y as variables.}
 
-\item{ylim}{A vector of limits for the y-axis}
+\item{x}{x-variable used for the scatterplot if surface should be plotted ontop (Only needs to be provided if fig is provided).}
 
-\item{colors}{A vector of two colors (can also be the same)}
+\item{y}{y-variable used for the scatterplot if surface should be plotted ontop (Only needs to be provided if fig is provided).}
 
-\item{showscale}{Option for showing the colorscale}
+\item{xlim}{A vector of limits for the x-axis.}
 
-\item{showlegend}{Option for showing the legend}
+\item{ylim}{A vector of limits for the y-axis.}
+
+\item{colors}{A vector of two colors (can also be the same) for the color gradient.}
+
+\item{showscale}{Option for showing or hiding the colorscale}
+
+\item{showlegend}{Option for showing or hiding the legend}
 
 \item{xlab}{x-axis label}
 
 \item{ylab}{y-axis label}
 
-\item{zlab}{y-axis label}
+\item{zlab}{z-axis label}
 
-\item{n}{number of points where function is evalutated (actually n^2)}
+\item{n}{number of points in each dimension where function is evaluated. The function will be evaluated n^2 times.}
 }
 \value{
-Returns a interactive 3D surface plot
+Returns a interactive 3D surface plot, either only the surface or the surface plotted ontop of a scatterplot if the scatterplot is provided as the fig argument.
 }
 \description{
 Create a 3D surface plot for any function
+}
+\examples{
+
+## Example 1: Creating a surface plot from a simple expression
+
+surface(expr = 4*x + 3*y + 0.5*x*y)
+
+# changing the colors
+surface(expr = 4*x + 3*y + 0.5*x*y, color = c("green", "blue"))
+
+
+## Example 2: Creating a surface plot from a predefined function
+
+f = function(x,y){
+-x*y*exp(-x^2-y^2)
+}
+
+# and increasing n for a higher resolution (as function has high curvature).
+# Also changing xlim and ylim.
+surface(expr = f, xlim = c(-5,5), ylim = c(-5,5), n = 200)
+
+
+## Example 3: Adding a surface to a regression plot (e.g. to plot a linear regression)
+
+# generating data
+x = rnorm(1000, 10, 20)
+y = rnorm(1000, 20, 20)
+z = 4 + 0.3*x + 0.2*y + rnorm(1000, 0, 4)
+
+# plotting scatterplot with simply_scatter
+scatter = simply_scatter(x,y,z)
+
+# fitting a linear regression model
+mod = lm(z ~ x + y)
+
+# adding model plane into scatterplot
+surface(fig = scatter, expr = coef(mod)[1] + coef(mod)[2]*x + coef(mod)[3]*y, x = x, y = y)
+
+# you can also use the pipe operator
+require(dplyr)
+simply_scatter(x,y,z) \%>\%
+  surface(expr = coef(mod)[1] + coef(mod)[2]*x + coef(mod)[3]*y, x = x, y = y)
+
+# for more complex models defining an expression as above might be tedious.
+# You can also just define your model prediction as a function
+f = function(x,y){
+predict(mod, newdata = data.frame(x,y))
+}
+
+surface(fig = scatter, expr = f, x = x, y = y)
 }
