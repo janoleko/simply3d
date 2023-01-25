@@ -54,7 +54,16 @@ Dynamic 3D Scatterplot
 simply_scatter(mtcars$hp, mtcars$cyl, mtcars$mpg, xlab = "hp", ylab = "cyl", zlab = "mpg")
 
 
-## Example 2: Adding a surface to a regression plot (e.g. to plot a linear regression)
+## Example 2: Coloring data points differently according to a color variable
+
+colorvariable = rep("cornflowerblue", nrow(mtcars))
+colorvariable[which(mtcars$vs == 1)] = "orange"
+
+simply_scatter(mtcars$hp, mtcars$cyl, mtcars$mpg,
+  color = colorvariable, xlab = "hp", ylab = "cyl", zlab = "mpg")
+
+
+## Example 3: Adding a surface to a regression plot (e.g. to plot a linear regression)
 
 # generating data
 x = rnorm(1000, 10, 20)
