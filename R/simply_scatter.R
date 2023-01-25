@@ -22,7 +22,16 @@
 #' simply_scatter(mtcars$hp, mtcars$cyl, mtcars$mpg, xlab = "hp", ylab = "cyl", zlab = "mpg")
 #'
 #'
-#' ## Example 2: Adding a surface to a regression plot (e.g. to plot a linear regression)
+#' ## Example 2: Coloring data points differently according to a color variable
+#'
+#' colorvariable = rep("cornflowerblue", nrow(mtcars))
+#' colorvariable[which(mtcars$vs == 1)] = "orange"
+#'
+#' simply_scatter(mtcars$hp, mtcars$cyl, mtcars$mpg,
+#'   color = colorvariable, xlab = "hp", ylab = "cyl", zlab = "mpg")
+#'
+#'
+#' ## Example 3: Adding a surface to a regression plot (e.g. to plot a linear regression)
 #'
 #' # generating data
 #' x = rnorm(1000, 10, 20)
@@ -55,7 +64,7 @@ simply_scatter = function(x, y, z, size = 5, color = "#000000",
                           opacity = 0.9, xlab = "x", ylab = "y", zlab = "z",
                           showscale = FALSE, showlegend = FALSE){
 
-  if(length(color) == 1){
+  if(length(color) == 1 | length(color) == length(x)){
     data = as.data.frame(cbind(x, y, z))
 
     fig = plotly::plot_ly(data)
@@ -65,21 +74,8 @@ simply_scatter = function(x, y, z, size = 5, color = "#000000",
                        yaxis = list(title = ylab),
                        zaxis = list(title = zlab)))
   } else{
-    if(length(color) == length(x)){
-      data = as.data.frame(cbind(x, y, z, color))
-
-      fig = plotly::plot_ly(data, showlegend = FALSE)
-      scatter = plotly::add_trace(fig, data = data, x = ~x, y = ~y, z = ~z, mode = "markers", type = "scatter3d",
-                                  color = ~color,
-                                  marker = list(opacity = 0.9, size = size))
-      out = plotly::layout(scatter, scene = list(xaxis = list(title = xlab),
-                                                 yaxis = list(title = ylab),
-                                                 zaxis = list(title = zlab)))
-    } else{
-      warning("Argument color either needs to be a color name or a vector the same length as x, y and z to color each point in the plot.")
-    }
+    warning("Argument color either needs to be a color name or a vector the same length as x, y and z to color each point in the plot.")
   }
-
 
   out
 }
