@@ -1,7 +1,7 @@
 #' Create a 3D surface plot for any function
 #'
 #' @param fig Optional: A scatterplot onto which to plot the surface. If provided please also provide the x and y-variables used for the scatterplot. If not provided please specify the xlim and ylim arguments for the plot.
-#' @param expr An expression or a function containing x and y as variables.
+#' @param expr An expression or a function containing x and y as variables. If a function is provided is does not need to be vectorizable, this will be done automatically.
 #' @param x x-variable used for the scatterplot if surface should be plotted ontop (Only needs to be provided if fig is provided).
 #' @param y y-variable used for the scatterplot if surface should be plotted ontop (Only needs to be provided if fig is provided).
 #' @param xlim A vector of limits for the x-axis.
