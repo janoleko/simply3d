@@ -66,6 +66,9 @@
 #' }
 #'
 #' surface(fig = scatter, expr = f, x = x, y = y)
+#'
+#' # or even shorter
+#' surface(fig = scatter, expr = predict(mod, newdata = data.frame(x,y)), x = x, y = y)
 
 surface = function(fig = NULL, expr, x = NULL, y = NULL, xlim = c(0,40), ylim = c(0,40),
                    colors = c("#ff6c59", "#ffd859"),
