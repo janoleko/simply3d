@@ -20,3 +20,39 @@ more details please see the documentation.
 ``` r
 devtools::install_github("janoleko/simply3d")
 ```
+
+## Example
+
+``` r
+library(simply3d)
+library(tidyverse)
+
+# generating data
+x1 = rnorm(500, 5, 5)
+x2 = rnorm(500, 20, 5)
+y = 8 - 0.4*x1 + 0.4*x2 + 1*x1^2 - 0.6*x2^2 + 2*x1*x2 + rnorm(500, 0, 100)
+```
+
+#### Creating a scatter plot
+
+``` r
+scatter = simply_scatter(x1, x2, y)
+scatter
+```
+
+![Scatterplot](figs/scatter.jpg)
+
+#### Fitting a linear regression model
+
+``` r
+mod = lm(y~x1+x2+I(x1^2)+I(x2^2)+I(x1*x2))
+```
+
+#### Adding the regression function to the existing scatterplot
+
+``` r
+scatter %>% surface(expr = predict(mod, data.frame(x1 = x, x2 = y)),
+                    x = x1, y = x2)
+```
+
+![Regression plot](figs/regression.jpg)
